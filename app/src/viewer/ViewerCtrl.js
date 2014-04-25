@@ -3,35 +3,42 @@ angular.module('app').controller('ViewerCtrl', [
   function($scope, viewerService) {
     'use strict';
 
+
+    var bindQuestion = function(nq, na){
+      $scope.questionimageurl = nq.urlImage;
+
+      $scope.questiontitle = nq.title;
+
+      $scope.answerType = 'radio';
+      if (nq.multiple) {
+        $scope.answerType = 'checkbox';  
+      }  
+    
+      $scope.buttonLabel = 'NextQuestion...';
+      if (na === 'nextQuestion') {
+        $scope.buttonLabel = 'Next Question';  
+      } else if(na === 'displayAnswer'){
+        $scope.buttonLabel = 'Display answer';  
+      }
+
+      // answers to be dispalyed
+      $scope.answers = nq.answers; 
+  
+
+    };
+
+
     $scope.qcmtitle = viewerService.getTitle();
 
-    var nextAction = 'nextQuestion'; //FIXME : replace with a service call
+    //FIXME : replace with a service call
+    var nextAction = viewerService.getNextAction();//'nextQuestion';//
+    console.log('Action='+nextAction);
 
     var nextQuestion = viewerService.getNextQuestion();
+    console.log(nextQuestion);
 
-    $scope.questionimageurl = nextQuestion.urlImage;
-
-    $scope.questiontitle = nextQuestion.title;
-
-    $scope.answerType = 'radio';
-    if (nextQuestion.multiple) {
-      $scope.answerType = 'checkbox';  
-    }  
+    bindQuestion(nextQuestion, nextAction);
     
-    $scope.buttonLabel = 'NextQuestion...';
-    if (nextAction === 'nextQuestion') {
-      $scope.buttonLabel = 'Next Question';  
-    } else if(nextAction === 'displayAnswer'){
-      $scope.buttonLabel = 'Display answer';  
-    }
-
-    
-
-
-    
-
-    $scope.answers = nextQuestion.answers;
-
     $scope.next = function(){
       viewerService.getNextQuestion(0);
     };

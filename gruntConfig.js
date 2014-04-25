@@ -28,8 +28,7 @@ module.exports = {
     js: [
       'app/vendor/underscore/underscore.js',
       'app/vendor/angular/angular.js',
-      'app/vendor/angular-route/angular-route.js',
-      'app/vendor/d3/d3.js'
+      'app/vendor/angular-route/angular-route.js'
     ],
     css: [
     ],

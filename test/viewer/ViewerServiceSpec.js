@@ -83,4 +83,22 @@ describe('Testing viewer/ViewerService', function() {
 
   });
 
+  describe('KnowedNextQuestion case', function() {
+
+    beforeEach(inject(function($routeParams) {
+      $routeParams.qcm = 'knowedNextQuestion';
+    }));
+
+    it('should return first question if getNextQuestion called with no arg', inject(function(ViewerService) {
+      expect(ViewerService.getNextQuestion().id).toBe(0);
+    }));
+
+    it('should return answers on first getNextQuestion call', inject(function(ViewerService) {
+      expect(ViewerService.getNextQuestion().id).toBe(0);
+      expect(ViewerService.getNextQuestion(0).id).toBe(1);
+      expect(ViewerService.getNextQuestion(0).id).toBe(4);
+    }));
+
+  });
+
 });

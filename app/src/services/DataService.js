@@ -145,7 +145,122 @@ angular.module('app').factory('DataService', [
       ]
     };
 
-    var QCMs = {simple: QCMSimple, multiple: QCMMultiple, displayAnswer: QCMDisplayAnswer};
+    var QCMKnowedNextQuestion = {
+      title: 'Git Genious',
+      nextAction: 'knowedNextQuestion',//displayAnswer, knowedNextQuestion
+      questions: [
+        {
+          id: 0,
+          title: 'Voulez-vous ?',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Envoyer du code ?',
+              good: true,
+              nextQuestion: 1
+            }, {
+              id: 1,
+              title: 'Récupérer du code ?',
+              good: true,
+              nextQuestion: 2
+            }, {
+              id: 2,
+              title: 'Autre ?',
+              good: true,
+              nextQuestion: 3
+            }
+          ] 
+        }, {
+          id: 1,
+          title: 'Avez-vous fait `git add .` ?',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Oui',
+              good: true,
+              nextQuestion: 4
+            }, {
+              id: 1,
+              title: 'Non',
+              good: true,
+              nextQuestion: 1
+            }
+          ] 
+        }, {
+          id: 2,
+          title: 'Avez-vous fait `git pull --rebase"` ?',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Oui',
+              good: true,
+              nextQuestion: 2
+            }, {
+              id: 1,
+              title: 'Non',
+              good: true,
+              nextQuestion: 2
+            }
+          ] 
+        }, {
+          id: 3,
+          title: 'Google est ton ami !',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [] 
+        }, {
+          id: 4,
+          title: 'Avez-vous fait `git commit -m "mon commentaire"` ?',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Oui',
+              good: true,
+              nextQuestion: 5
+            }, {
+              id: 1,
+              title: 'Non',
+              good: true,
+              nextQuestion: 2
+            }
+          ] 
+        }, {
+          id: 5,
+          title: 'Avez-vous fait `git push` ?',
+          score: 0,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Oui',
+              good: true,
+              nextQuestion: 5
+            }, {
+              id: 1,
+              title: 'Non',
+              good: true,
+              nextQuestion: 5
+            }
+          ] 
+        }
+      ]
+    };
+
+    var QCMs = {simple: QCMSimple, multiple: QCMMultiple, displayAnswer: QCMDisplayAnswer, knowedNextQuestion: QCMKnowedNextQuestion};
 
     return {
 

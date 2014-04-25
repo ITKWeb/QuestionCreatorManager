@@ -39,6 +39,13 @@ angular.module('app').factory('ViewerService', [
               returnedAnswer = false;
               currentQuestion = QCM().questions[currentQuestion.id+1];
             }
+          } else if(QCM().nextAction === 'knowedNextQuestion') {
+            var answer = _.find(currentQuestion.answers, function(answer) {
+              return answer.id === optAnswers;
+            });
+            currentQuestion = _.find(QCM().questions, function(question) {
+              return question.id === answer.nextQuestion;
+            });
           }
         } else {
           currentQuestion = QCM().questions[0];

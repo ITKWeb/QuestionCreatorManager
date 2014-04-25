@@ -5,7 +5,7 @@
 <div class="body">
 
 	<div class="image">
-		<img src="{{questionimageurl}}">
+		<img ng-src="{{questionimageurl}}">
 	</div>
 
 	<div class="question">
@@ -17,13 +17,11 @@
 				<input type="{{answerType}}" name="ans" ng-click="checked(answer.id)">{{answer.title}} <br>
 			</div>
 		</div>
-		<div class="btn" ng-click="next()">
-			{{buttonLabel}}
-			<!--input type="submit" value="{{buttonLabel}}"-->
-		</div>
+		<div class="btn" ng-click="next()" ng-hide="showScore">{{buttonLabel}}</div>
 	</div>
 
-<div class="score" ng-show="score">
-	{{score}}
+<div class="score" ng-show="showScore">
+	<div>SCORE : {{score}}</div><br>
+	<div class="btn" ng-click="restart()">RESTART</div>
 </div>
 </div>

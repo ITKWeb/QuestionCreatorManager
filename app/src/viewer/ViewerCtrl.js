@@ -28,6 +28,8 @@ angular.module('app').controller('ViewerCtrl', [
 
     $scope.qcmtitle = viewerService.getTitle();
 
+    $scope.showScore = false;
+
     var nextAction = viewerService.getNextAction();
     //console.log('Action='+nextAction);
 
@@ -49,6 +51,8 @@ angular.module('app').controller('ViewerCtrl', [
       if (nextQuestion === undefined){
         console.log('this is the end');
         $scope.score = viewerService.getScore();
+        $scope.showScore = true;
+
       }else{
         checkeds = [];
 
@@ -62,12 +66,20 @@ angular.module('app').controller('ViewerCtrl', [
       console.log('check');
       console.log(id);
 
+      if (nextQuestion.multiple === false){
+        checkeds = [];
+      }
+
       if(_.contains(checkeds, id) === true){
         checkeds = _.without(checkeds, id);
       }else{
         checkeds.push(id);
       }
 
+    };
+
+    $scope.restart = function(){
+      location.reload();
     };
 
 

@@ -5,9 +5,12 @@ angular.module('app', ['ngRoute'])
     'use strict';
 
     $routeProvider
-      .when('/', {
+      .when('/:qcm', {
         templateUrl: 'app/src/viewer/viewer.tpl.html',
         controller: 'ViewerCtrl'
+      })
+      .when('/', {
+        redirectTo: '/simple'
       })
       .otherwise({
         redirectTo: '/'

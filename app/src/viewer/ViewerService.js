@@ -1,58 +1,20 @@
 angular.module('app').factory('ViewerService', [
-  function() {
+  'DataService', '$routeParams',
+  function(dataService, $routeParams) {
 
     'use strict';
 
-    var score = 0, currentQuestion;
+    var score = 0, 
+      currentQuestion;
 
-    var QCM = {
-      title: 'Mon beau QCM',
-      nextAction: 'nextQuestion',//Display answer, KnowedNextQuestion
-      questions: [
-        {
-          id: 0,
-          title: 'titre question 1',
-          score: 1,
-          multiple: false,
-          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
-          answers: [
-            {
-              id: 0,
-              title: 'Réponse 1',
-              good: true,
-              nextQuestion: 1
-            }, {
-              id: 1,
-              title: 'Réponse 2',
-              good: false,
-              nextQuestion: 1
-            }
-          ] 
-        }, {
-          id: 1,
-          title: 'titre question 2',
-          score: 1,
-          multiple: false,
-          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
-          answers: [
-            {
-              id: 0,
-              title: 'Réponse 1',
-              good: false
-            }, {
-              id: 1,
-              title: 'Réponse 2',
-              good: true
-            }
-          ] 
-        }
-      ]
+    var QCM = function QCM() {
+      return dataService.getQCM($routeParams.qcm);
     };
 
     return { 
 
       getTitle: function() {
-        return QCM.title;
+        return QCM().title;
       },
       getNextQuestion: function(optAnswers) {
         if(optAnswers !== undefined) {
@@ -76,11 +38,11 @@ angular.module('app').factory('ViewerService', [
               score = score + currentQuestion.score;
             }
           }
-          if(QCM.nextAction === 'nextQuestion') {
-            currentQuestion = QCM.questions[currentQuestion.id+1];
+          if(QCM().nextAction === 'nextQuestion') {
+            currentQuestion = QCM().questions[currentQuestion.id+1];
           }
         } else {
-          currentQuestion = QCM.questions[0];
+          currentQuestion = QCM().questions[0];
         }
         return currentQuestion;
       },

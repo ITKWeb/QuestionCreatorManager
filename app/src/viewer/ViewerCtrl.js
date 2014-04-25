@@ -40,14 +40,20 @@ angular.module('app').controller('ViewerCtrl', [
       console.log('click');
 
       if (nextQuestion.multiple === false){
-        checkeds = checkeds[0];
+        checkeds = checkeds[0] || -1;
       }
 
       nextQuestion = viewerService.getNextQuestion(checkeds);
 
-      checkeds = [];
 
-      bindQuestion(nextQuestion, nextAction);
+      if (nextQuestion === undefined){
+        console.log('this is the end');
+        $scope.score = viewerService.getScore();
+      }else{
+        checkeds = [];
+
+        bindQuestion(nextQuestion, nextAction);
+      }
     };
 
     var checkeds = [];

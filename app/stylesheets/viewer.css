@@ -6,8 +6,21 @@
 	padding-bottom: 25px;
 }
 
+.body{
+	display: inline-block;
+}
+
+.image{
+	text-align: left;	
+	display: inline-block;
+}
+
 .question{
-	font-size: 0.8em;
+	display: inline-block;
+}
+
+.questiontitle{
+	font-size: 1.2em;
 	color: black;
 	text-align: left;
 }

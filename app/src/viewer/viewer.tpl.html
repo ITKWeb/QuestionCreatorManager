@@ -2,19 +2,24 @@
 	{{qcmtitle}}
 </div>
 
-<div class="question">
+<div class="body">
 
-	<img src="{{questionimageurl}}">
-	{{questiontitle}} :
+	<div class="image">
+		<img src="{{questionimageurl}}">
+	</div>
 
-	<form action="">
+	<div class="question">
+		<div class="questiontitle">
+			{{questiontitle}} :
+		</div>
 		<div ng-repeat="answer in answers">
 			<div>
 				<input type="{{answerType}}" name="answer" value="answer">{{answer.title}}<br>
 			</div>
 		</div>
-		<div class="btn"><input type="submit" value="{{buttonLabel}}"></div>
-
-	</form>
+		<div class="btn" ng-click="next">
+			<input type="submit" value="{{buttonLabel}}">
+		</div>
+	</div>
 
 </div>

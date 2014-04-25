@@ -16,7 +16,7 @@ angular.module('app').controller('ViewerCtrl', [
     $scope.answerType = 'radio';
     if (nextQuestion.multiple) {
       $scope.answerType = 'checkbox';  
-    }
+    }  
     
     $scope.buttonLabel = 'NextQuestion...';
     if (nextAction === 'nextQuestion') {
@@ -31,6 +31,10 @@ angular.module('app').controller('ViewerCtrl', [
     
 
     $scope.answers = nextQuestion.answers;
+
+    $scope.next = function(){
+      viewerService.getNextQuestion(0);
+    };
 
   }
 ]);

@@ -42,7 +42,7 @@ angular.module('app').controller('ViewerCtrl', [
       console.log('click');
 
       if (nextQuestion.multiple === false){
-        checkeds = checkeds[0] || -1;
+        checkeds = checkeds[0] === undefined ? -1 : checkeds[0];
       }
 
       nextQuestion = viewerService.getNextQuestion(checkeds);

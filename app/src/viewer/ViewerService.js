@@ -1,6 +1,6 @@
 angular.module('app').factory('ViewerService', [
-  'DataService', '$routeParams',
-  function(dataService, $routeParams) {
+  '$routeParams', 'DataService', 'MultipleService', 'SimpleService',
+  function($routeParams, dataService, multipleService, simpleService) {
 
     'use strict';
 
@@ -22,26 +22,11 @@ angular.module('app').factory('ViewerService', [
       getNextQuestion: function(optAnswers) {
         if(optAnswers !== undefined) {
           if(currentQuestion.multiple === true && _.isArray(optAnswers) === true) {
-            var goodAnswers = _.filter(currentQuestion.answers, function(answer) {
-              return answer.good === true;
-            });
-            var hasWin = _.every(optAnswers, function(answer) {
-              return _.find(currentQuestion.answers, function(goodAnswer) {
-                return answer === goodAnswer.id;
-              });
-            });
-            if(hasWin === true) {
-              score = score + currentQuestion.score;
-            }
+            score = score + multipleService.checkScore(currentQuestion, optAnswers);
           } else if(currentQuestion.multiple === false && _.isNumber(optAnswers)) {
-            var goodAnswer = _.find(currentQuestion.answers, function(answer) {
-              return answer.good === true;
-            });
-            if(goodAnswer !== undefined && optAnswers === goodAnswer.id) {
-              score = score + currentQuestion.score;
-            }
+            score = score + simpleService.checkScore(currentQuestion, optAnswers);
           } else {
-            throw 'Bad argument in ViewerService.getNextQuestion want multiple=' + currentQuestion.multiple + ' and has ' + optAnswers;
+            throw 'Bad argument in ViewerService.getNextQuestion() want multiple=' + currentQuestion.multiple + ' and has ' + optAnswers;
           }
           if(QCM().nextAction === 'nextQuestion') {
             currentQuestion = QCM().questions[currentQuestion.id+1];

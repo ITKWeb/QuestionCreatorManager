@@ -1,0 +1,30 @@
+<div class="title">
+	{{qcmtitle}}
+</div>
+
+<div class="body">
+	<div>
+		<div class="image">
+			<img ng-src="{{questionimageurl}}">
+		</div>
+
+		<div class="question">
+			<div class="questiontitle">
+				{{questiontitle}} :
+			</div>
+			<div class="answers" ng-repeat="answer in answers">
+				<div>
+					<input type="{{answerType}}" name="ans" ng-click="checked(answer.id)">{{answer.title}} <br>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="btnNext">
+		<div class="btn" ng-click="next()" ng-hide="showScore">{{buttonLabel}}</div>
+	</div>
+<div class="score" ng-show="showScore">
+	<div>SCORE : {{score}}</div><br>
+	<div class="btn" ng-click="restart()">Restart</div>
+</div>
+</div>

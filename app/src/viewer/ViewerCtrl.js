@@ -22,25 +22,25 @@ angular.module('app').controller('ViewerCtrl', [
       }
 
       // answers to be dispalyed
-      $scope.answers = nq.answers; 
-  
-
+      $scope.answers = nq.answers;
     };
 
 
     $scope.qcmtitle = viewerService.getTitle();
 
-    //FIXME : replace with a service call
-    var nextAction = viewerService.getNextAction();//'nextQuestion';//
-    console.log('Action='+nextAction);
+    var nextAction = viewerService.getNextAction();
+    //console.log('Action='+nextAction);
 
     var nextQuestion = viewerService.getNextQuestion();
-    console.log(nextQuestion);
+    //console.log(nextQuestion);
 
     bindQuestion(nextQuestion, nextAction);
     
     $scope.next = function(){
-      viewerService.getNextQuestion(0);
+      console.log('click');
+      console.log($scope.answers);
+      var retour = viewerService.getNextQuestion(0);
+      bindQuestion(retour, nextAction);
     };
 
   }

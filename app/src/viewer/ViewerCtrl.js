@@ -4,7 +4,7 @@ angular.module('app').controller('ViewerCtrl', [
 
     'use strict';
 
-    $scope.hello = viewerService.getTitle();
+    $scope.qcmtitle = viewerService.getTitle();
 
   }
 ]);

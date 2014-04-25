@@ -28,6 +28,23 @@ angular.module('app').factory('ViewerService', [
               nextQuestion: 1
             }
           ] 
+        }, {
+          id: 1,
+          title: 'titre question 2',
+          score: 1,
+          multiple: false,
+          urlImage: 'https://avatars3.githubusercontent.com/u/1492516?s=140',
+          answers: [
+            {
+              id: 0,
+              title: 'Réponse 1',
+              good: false
+            }, {
+              id: 1,
+              title: 'Réponse 2',
+              good: true
+            }
+          ] 
         }
       ]
     };
@@ -55,7 +72,7 @@ angular.module('app').factory('ViewerService', [
             var goodAnswer = _.find(currentQuestion.answers, function(answer) {
               return answer.good === true;
             });
-            if(goodAnswer !== undefined && optAnswers.id === goodAnswer.id) {
+            if(goodAnswer !== undefined && optAnswers === goodAnswer.id) {
               score = score + currentQuestion.score;
             }
           }
@@ -66,6 +83,9 @@ angular.module('app').factory('ViewerService', [
           currentQuestion = QCM.questions[0];
         }
         return currentQuestion;
+      },
+      getScore: function() {
+        return score;
       }
 
     };

@@ -254,7 +254,7 @@ module.exports = function ( grunt ) {
     draw_my_project: {
       client: {
         options: {
-          source: false,
+          source: true,
           title: '<%= pkg.name %>',
           link: 'http://itkweb.com',
           urlLogo: '../../app/assets/img/4pble-logo.png',
@@ -269,23 +269,7 @@ module.exports = function ( grunt ) {
           type: 'angularjs'
         },
         files: {
-          'draw_my_project/client': ['app/src/**/*.js']
-        }
-      },
-      server: {
-        options: {
-          source: false,
-          title: '<%= pkg.name %>',
-          link: 'http://itkweb.com',
-          urlLogo: '../../app/assets/img/4pble-logo.png',
-          favicon: '../../app/assets/img/favicon.png',
-          advices: false,
-          type: 'java'
-        },
-        files: {
-          'draw_my_project/server': [
-            '../server/src/main/java/**/*.java'
-          ]
+          'draw_my_project/QCM': ['app/src/**/*.js']
         }
       }
     },

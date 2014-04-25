@@ -1,4 +1,20 @@
 <div class="title">
+	{{qcmtitle}}
+</div>
 
-	<h1>CAZZO</h1>
-	{{qcmtitle}}</div>
+<div class="question">
+
+	<img src="{{questionimageurl}}">
+	{{questiontitle}} :
+
+	<form action="">
+		<div ng-repeat="answer in answers">
+			<div>
+				<input type="{{answerType}}" name="answer" value="answer">{{answer.title}}<br>
+			</div>
+		</div>
+		<div class="btn"><input type="submit" value="{{buttonLabel}}"></div>
+
+	</form>
+
+</div>

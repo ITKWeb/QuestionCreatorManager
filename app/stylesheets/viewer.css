@@ -1,4 +1,13 @@
 .title {
-	font-size: 1.2em;
+	font-size: 1.8em;
 	color: red;
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.question{
+	font-size: 0.8em;
+	color: black;
+	text-align: left;
 }

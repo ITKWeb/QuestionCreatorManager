@@ -5,7 +5,8 @@ angular.module('app').factory('ViewerService', [
     'use strict';
 
     var score = 0, 
-      currentQuestion;
+      currentQuestion,
+      returnedAnswer = false;
 
     var QCM = function QCM() {
       return dataService.getQCM($routeParams.qcm);
@@ -21,15 +22,23 @@ angular.module('app').factory('ViewerService', [
       },
       getNextQuestion: function(optAnswers) {
         if(optAnswers !== undefined) {
-          if(currentQuestion.multiple === true && _.isArray(optAnswers) === true) {
+          if(currentQuestion.multiple === true && _.isArray(optAnswers) === true && returnedAnswer === false) {
             score = score + multipleService.checkScore(currentQuestion, optAnswers);
-          } else if(currentQuestion.multiple === false && _.isNumber(optAnswers)) {
+          } else if(currentQuestion.multiple === false && _.isNumber(optAnswers) && returnedAnswer === false) {
             score = score + simpleService.checkScore(currentQuestion, optAnswers);
-          } else {
+          } else if(returnedAnswer === false) {
             throw 'Bad argument in ViewerService.getNextQuestion() want multiple=' + currentQuestion.multiple + ' and has ' + optAnswers;
           }
           if(QCM().nextAction === 'nextQuestion') {
             currentQuestion = QCM().questions[currentQuestion.id+1];
+          } else if(QCM().nextAction === 'displayAnswer') {
+            if(returnedAnswer === false) {
+              returnedAnswer = true;
+              return currentQuestion.answers;
+            } else {
+              returnedAnswer = false;
+              currentQuestion = QCM().questions[currentQuestion.id+1];
+            }
           }
         } else {
           currentQuestion = QCM().questions[0];

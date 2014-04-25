@@ -57,4 +57,30 @@ describe('Testing viewer/ViewerService', function() {
 
   });
 
+  describe('Display answer case', function() {
+
+    beforeEach(inject(function($routeParams) {
+      $routeParams.qcm = 'displayAnswer';
+    }));
+
+    it('should return first question if getNextQuestion called with no arg', inject(function(ViewerService) {
+      expect(ViewerService.getNextQuestion().id).toBe(0);
+    }));
+
+    it('should return answers on first getNextQuestion call', inject(function(ViewerService) {
+      expect(ViewerService.getNextQuestion().id).toBe(0);
+      var answers = ViewerService.getNextQuestion([]);
+      expect(answers.length).toBe(3);
+      expect(answers[0].title).toBe('Réponse 1');
+    }));
+
+    it('should return nextQuestion on second getNextQuestion call', inject(function(ViewerService) {
+      expect(ViewerService.getNextQuestion().id).toBe(0);
+      var answers = ViewerService.getNextQuestion([0, 1]);
+      expect(ViewerService.getNextQuestion([0, 1]).id).toBe(1);
+      expect(ViewerService.getScore()).toBe(1);
+    }));
+
+  });
+
 });

@@ -38,10 +38,33 @@ angular.module('app').controller('ViewerCtrl', [
     
     $scope.next = function(){
       console.log('click');
-      console.log($scope.answers);
-      var retour = viewerService.getNextQuestion(0);
-      bindQuestion(retour, nextAction);
+
+      if (nextQuestion.multiple === false){
+        checkeds = checkeds[0];
+      }
+
+      nextQuestion = viewerService.getNextQuestion(checkeds);
+
+      checkeds = [];
+
+      bindQuestion(nextQuestion, nextAction);
     };
+
+    var checkeds = [];
+
+    $scope.checked = function(id){
+      console.log('check');
+      console.log(id);
+
+      if(_.contains(checkeds, id) === true){
+        checkeds = _.without(checkeds, id);
+      }else{
+        checkeds.push(id);
+      }
+
+    };
+
+
 
   }
 ]);

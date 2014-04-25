@@ -14,7 +14,7 @@
 		</div>
 		<div ng-repeat="answer in answers">
 			<div>
-				<input type="{{answerType}}" name="answer" value="answer">{{answer.title}}<br>
+				<input type="{{answerType}}" name="ans" ng-click="checked(answer.id)">{{answer.title}} <br>
 			</div>
 		</div>
 		<div class="btn" ng-click="next()">

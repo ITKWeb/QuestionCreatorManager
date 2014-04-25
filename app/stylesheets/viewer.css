@@ -15,6 +15,11 @@
 	padding-right: 15px;
 	padding-left: 15px;
 	display: inline-block;
+	vertical-align: top;
+}
+
+.image, .image img {
+	max-width: 150px;
 }
 
 .question{
@@ -29,6 +34,7 @@
 }
 
 .answers{
+	text-align: left;
 	padding-top: 5px;
 	padding-bottom: 5px;	
 }
